@@ -16,7 +16,7 @@ export default function Task({ filter }) {
     setTasks(tasks.map((t) => t.id === updated.id ? updated : t))
   };
   const handleDelete = (deleted) => {
-    setTasks(tasks.filter((t) => t.id !== deleted.id))
+    setTasks(tasks.filter((t) => t.id !== deleted))
   };
 
   useEffect(() => {
