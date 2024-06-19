@@ -21,6 +21,7 @@ export default function Tasks({tasks, filter, onUpdate}) {
             <Todo
               key={item.id}
               id={item.id}
+              filter={filter}
               task={item.text}
               onChange={handleStatusUpdate}
               status={item.status}
