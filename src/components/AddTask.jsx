@@ -2,7 +2,7 @@ import React from 'react';
 import AddButton from './AddButton';
 import Todo from './Todo';
 
-export default function AddTask({ tasks, onUpdate, onAdd }) {
+export default function AddTask({ tasks, onUpdate, onAdd, onDelete }) {
   const handleStatusUpdate = (updatedTask) => {
     onUpdate(updatedTask)
     console.log(tasks);
@@ -17,8 +17,9 @@ export default function AddTask({ tasks, onUpdate, onAdd }) {
               key={item.id}
               id={item.id}
               task={item.text}
-              onChange={handleStatusUpdate}
+              onUpdate={handleStatusUpdate}
               status={item.status}
+              onDelete={onDelete}
             />
           )
         }
