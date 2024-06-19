@@ -5,11 +5,11 @@ import Todo from './Todo';
 export default function AddTask({ tasks, onUpdate, onAdd, onDelete }) {
   const handleStatusUpdate = (updatedTask) => {
     onUpdate(updatedTask)
-    console.log(tasks);
   }
 
   return (
     <section>
+      <h2>할 일</h2>
       <ul>
         {
           tasks.map((item) =>

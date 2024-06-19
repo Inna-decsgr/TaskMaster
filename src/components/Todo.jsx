@@ -1,12 +1,10 @@
 import React from 'react';
 
-export default function Todo({ id, filter, task, status, onUpdate, onDelete }) {
+export default function Todo({ id, task, status, onUpdate, onDelete }) {
   const handleChange = (e) => {
     const newStatus = e.target.checked ? '완료' : '진행 중';
     onUpdate({id, text: task, status:newStatus})
   }
-
-  console.log(filter)
   
 
   return (

@@ -10,11 +10,11 @@ export default function Tasks({tasks, filter, onUpdate}) {
 
   const handleStatusUpdate = (updatedTask) => {
     onUpdate(updatedTask)
-    console.log(tasks);
   }
 
   return (
     <section>
+      <h2>{filter}</h2>
       <ul>
         {
           filteredTasks.map((item) =>
@@ -23,7 +23,7 @@ export default function Tasks({tasks, filter, onUpdate}) {
               id={item.id}
               filter={filter}
               task={item.text}
-              onChange={handleStatusUpdate}
+              onUpdate={handleStatusUpdate}
               status={item.status}
             />
           )
