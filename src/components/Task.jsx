@@ -4,7 +4,6 @@ import Tasks from './Tasks';
 
 export default function Task({ filter }) {
   const [tasks, setTasks] = useState(() => readTasksFromLocalstorage());
-
   const handleAdd = (task) => {
     setTasks([
       ...tasks,
@@ -50,10 +49,8 @@ export default function Task({ filter }) {
           tasks={tasks}
           filter={'진행 중'}
           onUpdate={handleUpdate}
-          onAdd={handleAdd}
-          onDelete={handleDelete}
-          change={false}
           color={'yellow'}
+          date={true}
         />
       );
       break;
@@ -63,9 +60,6 @@ export default function Task({ filter }) {
           tasks={tasks}
           filter={'완료'}
           onUpdate={handleUpdate}
-          onAdd={handleAdd}
-          onDelete={handleDelete}
-          change={false}
           color={'green'}
         />
       );

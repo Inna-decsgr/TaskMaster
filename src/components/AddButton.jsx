@@ -4,18 +4,18 @@ import useDebounce from '../hooks/debounce';
 
 export default function AddButton({ onAdd }) {
   const [text, setText] = useState('');
-
+  
   const handleChange = (e) => {
     setText(e.target.value);
   }
-  const debouncedText = useDebounce(text, 300);
+  const debouncedText = useDebounce(text, 200);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (debouncedText.trim().length === 0) {
-      return
+    if(debouncedText.trim().length === 0) {
+      return;
     }
-    onAdd({ id: uuidv4(), debouncedText, status: '할일' });
+    onAdd({ id: uuidv4(), text:debouncedText, status: '할일' });
     setText('');
   }
 
