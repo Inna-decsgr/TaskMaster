@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FaPenFancy } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
 import { FaCheckCircle } from "react-icons/fa";
 import { AiOutlineRollback } from 'react-icons/ai';
 import useDebounce from '../hooks/debounce';
+import { Calendar } from './Calendar';
 
-export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, change }) {
+export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, change, date }) {
   const [newText, setNewText] = useState('');
   const [edit, setEdit] = useState(false);
+  const [startDate, setStartDate] = useState(new Date());
 
   const updateText = (e) => {
     setNewText(e.target.value);
   }
 
-  const editedText = useDebounce(newText, 300);
+  const debouncedText = useDebounce(newText, 200);
 
   const handleChange = (e) => {
     const newStatus = e.target.checked ? '완료' : '진행 중';
@@ -22,28 +24,38 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
   const handleEdit = () => {
     setEdit(!edit);
   }
-  const handleStorage = (edit) => {
-    if (editedText.trim().length !== 0) {
+  const handleStorage = (e) => {
+    e.preventDefault();
+    if (debouncedText.trim().length !== 0) {
       onEdit({
         id,
         status,
-        text: editedText
-      })
+        text: debouncedText
+      });
+      setEdit(!edit)
     } else {
       setEdit(!edit)
     }
-    setEdit(!edit)
   }
+
+  const list = useRef(null);
+  const scrollToBottom = () => {
+    list.current.scrollIntoView({behavior:'smooth'})
+  }
+  useEffect(() => {
+    scrollToBottom()
+  },[task])
 
 
   return (
-    <div className={`flex items-center my-3 ${change ? 'justify-between' : ''}`}>
+    <div className={`flex items-center my-3 justify-between`} ref={list}>
       {
         edit ? (
           <>
             <form onSubmit={handleStorage}>
               <input
                 type="text"
+                value={newText}
                 onChange={updateText}
               />
             </form>
@@ -56,7 +68,7 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
                   <AiOutlineRollback />
                 </button>
             </span>
-          )}
+            )}
           </>
         ) : (
         <>
@@ -74,6 +86,11 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
               <button className='hover:bg-white p-1' onClick={handleEdit}><FaPenFancy /></button>
               <button className='hover:bg-white p-1' onClick={() => onDelete(id)}><BsTrash /></button>
             </span>
+          )}
+          {date && (
+            <div>
+              <Calendar id={id} selectedDate={startDate} setSelectedDate={setStartDate} />
+            </div>
           )}
         </>
         )
