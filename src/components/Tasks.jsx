@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from './Todo';
 
-export default function Tasks({tasks, filter, onUpdate, change, style}) {
+export default function Tasks({tasks, filter, onUpdate, change, color}) {
   function filterTasksByStatus(tasks, statusFilter) {
     return tasks.filter(task => task.status === statusFilter);
   }
@@ -12,12 +12,14 @@ export default function Tasks({tasks, filter, onUpdate, change, style}) {
     onUpdate(updatedTask)
   }
 
-
   return (
     <section>
-      <div className={`flex justify-center items-center bg-${style}-100 w-24 rounded-lg mb-4`}>
-        <div className={`relative w-2 h-2 before:block before:w-2 before:h-2 before:absolute before:top-0 before:left-0 rounded-full bg-${style}-400`} />
-        <h2 className='ml-3 font-bold'>{filter}</h2>
+      <div className='flex'>
+        <div className={`flex justify-center items-center bg-${color}-100 w-24 rounded-lg mb-4`}>
+        <div className={`relative w-2 h-2 before:block before:w-2 before:h-2 before:absolute before:top-0 before:left-0 rounded-full bg-${color}-400`} />
+          <h2 className='ml-3 font-bold'>{filter}</h2>
+        </div>
+        <span className='ml-2 text-gray-400 font-bold'>{filteredTasks.length}</span>
       </div>
       <div className='w-72 h-72 border rounded-md p-2 bg-gray-50'>
         {

@@ -10,9 +10,12 @@ export default function AddTask({ tasks, onUpdate, onAdd, onDelete, onEdit, chan
 
   return (
     <section>
-      <div className='flex justify-center items-center bg-red-100 w-24 rounded-lg mb-4'>
-        <div className='relative w-2 h-2 before:block before:w-2 before:h-2 before:absolute before:top-0 before:left-0 rounded-full bg-red-400'></div>
-        <h2 className='ml-3 font-bold'>할 일</h2>
+      <div className='flex'>
+        <div className='flex justify-center items-center bg-red-100 w-24 rounded-lg mb-4'>
+          <div className='relative w-2 h-2 before:block before:w-2 before:h-2 before:absolute before:top-0 before:left-0 rounded-full bg-red-400'></div>
+          <h2 className='ml-3 font-bold'>할 일</h2>
+        </div>
+        <span className='ml-4 text-gray-400 font-bold'>{tasks.length}</span>
       </div>
       <div className='w-72 h-72 border rounded-md p-2 bg-gray-50'>
         <h2 className='text-2xl font-bold'>Tasks</h2>
