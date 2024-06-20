@@ -3,15 +3,18 @@ import { FaPenFancy } from "react-icons/fa";
 import { BsTrash } from "react-icons/bs";
 import { FaCheckCircle } from "react-icons/fa";
 import { AiOutlineRollback } from 'react-icons/ai';
+import useDebounce from '../hooks/debounce';
 
 export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, change }) {
   const [newText, setNewText] = useState('');
   const [edit, setEdit] = useState(false);
 
-  console.log(newText);
   const updateText = (e) => {
     setNewText(e.target.value);
   }
+
+  const editedText = useDebounce(newText, 300);
+
   const handleChange = (e) => {
     const newStatus = e.target.checked ? '완료' : '진행 중';
     onUpdate({id, text: task, status:newStatus})
@@ -20,11 +23,11 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
     setEdit(!edit);
   }
   const handleStorage = (edit) => {
-    if (newText.trim().length !== 0) {
+    if (editedText.trim().length !== 0) {
       onEdit({
         id,
         status,
-        text: newText
+        text: editedText
       })
     } else {
       setEdit(!edit)
@@ -64,7 +67,7 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
               onChange={handleChange}
               checked={status === '완료'}
             />
-            <label htmlFor={id} className='ml-2'>{task}</label>
+            <label htmlFor={id} className={`ml-2 ${status === '완료' ? 'line-through' : ''}`}>{task}</label>
           </div>
           {change && (
             <span className='flex gap-2'>
@@ -76,7 +79,5 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
         )
       }
     </div>
-
-    
   );
 }

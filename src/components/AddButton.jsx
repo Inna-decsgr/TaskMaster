@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import useDebounce from '../hooks/debounce';
 
 export default function AddButton({ onAdd }) {
   const [text, setText] = useState('');
-  
+
   const handleChange = (e) => {
     setText(e.target.value);
   }
+  const debouncedText = useDebounce(text, 300);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (text.trim().length === 0) {
+    if (debouncedText.trim().length === 0) {
       return
     }
-    onAdd({ id: uuidv4(), text, status: '할일' });
+    onAdd({ id: uuidv4(), debouncedText, status: '할일' });
     setText('');
   }
+
 
   return (
     <div>
@@ -24,7 +28,7 @@ export default function AddButton({ onAdd }) {
           placeholder='새로운 할 일'
           value={text}
           onChange={handleChange}
-          className='flex-grow p-1 pl-2 border-none outline-none'
+          className='flex-grow border border-gray-200 p-1 pl-2 outline-none'
         />
         <button className='bg-red-100 p-1 text-sm'>추가</button>
       </form>
