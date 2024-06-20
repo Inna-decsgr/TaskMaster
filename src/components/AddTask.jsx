@@ -2,6 +2,7 @@ import React from 'react';
 import AddButton from './AddButton';
 import Todo from './Todo';
 
+
 export default function AddTask({ tasks, onUpdate, onAdd, onDelete, onEdit, change }) {
   const handleStatusUpdate = (updatedTask) => {
     onUpdate(updatedTask)
@@ -17,7 +18,7 @@ export default function AddTask({ tasks, onUpdate, onAdd, onDelete, onEdit, chan
         </div>
         <span className='text-sm md:text-base ml-4 text-gray-400 font-bold'>{tasks.length}</span>
       </div>
-      <div className='w-72 h-72 border rounded-tl-md rounded-tr-md p-2 bg-gray-50'>
+      <div className='w-80 h-80 border rounded-tl-md rounded-tr-md p-2 bg-gray-50 overflow-y-auto'>
         <h2 className='text-2xl font-bold'>Tasks</h2>
         {
           tasks.map((item) =>
@@ -34,7 +35,7 @@ export default function AddTask({ tasks, onUpdate, onAdd, onDelete, onEdit, chan
           )
         }
       </div>
-      <AddButton onAdd={onAdd}/>
+      <AddButton onAdd={onAdd} />
     </section>
   );
 }

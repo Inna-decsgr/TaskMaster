@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from './Todo';
 
-export default function Tasks({tasks, filter, onUpdate, change, color}) {
+export default function Tasks({tasks, filter, onUpdate, change, color, date}) {
   function filterTasksByStatus(tasks, statusFilter) {
     return tasks.filter(task => task.status === statusFilter);
   }
@@ -21,20 +21,24 @@ export default function Tasks({tasks, filter, onUpdate, change, color}) {
         </div>
         <span className='text-sm md:text-base ml-4 text-gray-400 font-bold'>{filteredTasks.length}</span>
       </div>
-      <div className='w-72 h-72 border rounded-md p-2 bg-gray-50'>
-        {
-          filteredTasks.map((item) =>
-            <Todo
-              key={item.id}
-              id={item.id}
-              filter={filter}
-              task={item.text}
-              onUpdate={handleStatusUpdate}
-              status={item.status}
-              change={change}
-            />
-          )
-        }
+      <div className='w-80 h-80 border rounded-md p-2 bg-gray-50 overflow-y-auto'>
+        {date && <span className='ml-56'>기한</span>}
+        <div>
+          {
+            filteredTasks.map((item) =>
+              <Todo
+                key={item.id}
+                id={item.id}
+                filter={filter}
+                task={item.text}
+                onUpdate={handleStatusUpdate}
+                status={item.status}
+                change={change}
+                date={date}
+              />
+            )
+          }
+        </div>
       </div>
     </section>
   );
