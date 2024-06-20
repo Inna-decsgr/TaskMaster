@@ -18,14 +18,15 @@ export default function AddButton({ onAdd }) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='flex items-center'>
         <input
           type="text"
-          placeholder='새로운 할일'
+          placeholder='새로운 할 일'
           value={text}
           onChange={handleChange}
+          className='flex-grow border border-gray-300 p-1 pl-2'
         />
-        <button>추가</button>
+        <button className='border p-1'>추가</button>
       </form>
     </div>
   );

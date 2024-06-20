@@ -5,8 +5,8 @@ const filters = ['할 일', '진행 중', '완료']
 
 export default function TaskContainer() {
   return (
-    <>
-      <ul>
+    <section>
+      <ul className='flex gap-48'>
         {
           filters.map((filter, index) => (
             <li key={index}>
@@ -15,7 +15,7 @@ export default function TaskContainer() {
           ))
         }
       </ul>
-    </>
+    </section>
   );
 }
 
