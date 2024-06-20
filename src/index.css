@@ -3,17 +3,12 @@
 @tailwind utilities;
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  @apply flex flex-col items-center mx-10
+  
+  @apply flex flex-col items-center mt-[250px]
 }
 
 #root {
-  @apply md:w-full max-w-screen-2xl;
+  @apply md:w-full max-w-screen-xl;
 }
 
 code {
