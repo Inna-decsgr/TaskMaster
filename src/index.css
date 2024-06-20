@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 body {
-  
-  @apply flex flex-col items-center mt-10 md:mt-[250px]
+  @apply flex flex-col items-center mt-10 md:mt-[200px]
 }
 
 #root {
@@ -20,3 +19,4 @@ ul {
   list-style: none;
   padding: 0;
 }
+
