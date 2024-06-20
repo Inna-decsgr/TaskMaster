@@ -53,7 +53,7 @@ export default function Task({ filter }) {
           onAdd={handleAdd}
           onDelete={handleDelete}
           change={false}
-          style={'yellow'}
+          color={'yellow'}
         />
       );
       break;
@@ -66,10 +66,13 @@ export default function Task({ filter }) {
           onAdd={handleAdd}
           onDelete={handleDelete}
           change={false}
-          style={'green'}
+          color={'green'}
         />
       );
-    break;
+      break;
+    default:
+      content = null;
+      break;
   }
 
   return (
