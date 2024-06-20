@@ -11,7 +11,6 @@ export default function Tasks({tasks, filter, onUpdate, change, style}) {
   const handleStatusUpdate = (updatedTask) => {
     onUpdate(updatedTask)
   }
-  console.log(style);
 
 
   return (

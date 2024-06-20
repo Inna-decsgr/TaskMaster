@@ -8,7 +8,7 @@ body {
 }
 
 #root {
-  @apply md:w-full max-w-screen-xl;
+  @apply md:w-full max-w-screen-lg;
 }
 
 code {
