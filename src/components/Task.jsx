@@ -18,6 +18,11 @@ export default function Task({ filter }) {
   const handleDelete = (deleted) => {
     setTasks(tasks.filter((t) => t.id !== deleted))
   };
+  const handleEdit = (edited) => {
+    if (edited) {
+      setTasks(tasks.map((t) => t.id === edited.id ? edited : t));
+    }
+  }
 
   useEffect(() => {
     localStorage.setItem('tasks', JSON.stringify(tasks))
@@ -34,6 +39,7 @@ export default function Task({ filter }) {
           onUpdate={handleUpdate}
           onAdd={handleAdd}
           onDelete={handleDelete}
+          onEdit={handleEdit}
           change={true}
         />
       );

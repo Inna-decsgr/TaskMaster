@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AddButton from './AddButton';
 import Todo from './Todo';
 
-export default function AddTask({ tasks, onUpdate, onAdd, onDelete, change }) {
+export default function AddTask({ tasks, onUpdate, onAdd, onDelete, onEdit, change }) {
   const handleStatusUpdate = (updatedTask) => {
     onUpdate(updatedTask)
   }
@@ -16,16 +16,16 @@ export default function AddTask({ tasks, onUpdate, onAdd, onDelete, change }) {
       </div>
       <div className='w-72 h-72 border rounded-md p-2 bg-gray-50'>
         <h2 className='text-2xl font-bold'>Tasks</h2>
-
         {
           tasks.map((item) =>
             <Todo
               key={item.id}
               id={item.id}
               task={item.text}
-              onUpdate={handleStatusUpdate}
               status={item.status}
+              onUpdate={handleStatusUpdate}
               onDelete={onDelete}
+              onEdit={onEdit}
               change={change}
             />
           )
