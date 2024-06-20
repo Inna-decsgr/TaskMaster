@@ -60,7 +60,7 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
           </>
         ) : (
         <>
-          <div>
+          <div className='text-sm md:text-base'>
             <input 
               id={id}
               type="checkbox"

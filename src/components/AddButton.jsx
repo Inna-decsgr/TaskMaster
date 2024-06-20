@@ -28,9 +28,9 @@ export default function AddButton({ onAdd }) {
           placeholder='새로운 할 일'
           value={text}
           onChange={handleChange}
-          className='flex-grow border border-gray-200 p-1 pl-2 outline-none'
+          className='flex-grow border border-gray-200 p-1 pl-2 outline-none rounded-bl-md'
         />
-        <button className='bg-red-100 p-1 text-sm'>추가</button>
+        <button className='bg-red-100 p-1 rounded-br-md'>추가</button>
       </form>
     </div>
   );
