@@ -22,7 +22,7 @@ export default function Tasks({tasks, filter, onUpdate, change, color, date}) {
         <span className='text-sm md:text-base ml-4 text-gray-400 font-bold dark:text-text-gray'>{filteredTasks.length}</span>
       </div>
       <div className='w-80 h-80 border rounded-md p-2 bg-gray-100 overflow-y-auto dark:bg-bg-task-dark dark:border-none'>
-        {date && <span className='ml-56 dark:text-text'>기한</span>}
+        {date && <span className='ml-[200px] dark:text-text'>* 목표 기한 *</span>}
         <div>
           {
             filteredTasks.map((item) =>
