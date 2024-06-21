@@ -15,7 +15,7 @@ export default function AddButton({ onAdd }) {
     if(debouncedText.trim().length === 0) {
       return;
     }
-    onAdd({ id: uuidv4(), text:debouncedText, status: '할일' });
+    onAdd({ id: uuidv4(), text:debouncedText, status: '할 일' });
     setText('');
   }
 

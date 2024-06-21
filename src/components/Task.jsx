@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import AddTask from './AddTask';
+import React, { useEffect } from 'react';
 import Tasks from './Tasks';
 import { useRecoilState } from 'recoil';
 import { tasksState } from '../atoms';
+import AddButton from './AddButton';
 
 export default function Task({ filter }) {
   const [tasks, setTasks] = useRecoilState(tasksState);
@@ -44,14 +44,18 @@ export default function Task({ filter }) {
   switch (filter) {
     case '할 일':
       content = (
-        <AddTask
-          tasks={tasks}
-          onUpdate={handleUpdate}
-          onAdd={handleAdd}
-          onDelete={handleDelete}
-          onEdit={handleEdit}
-          change={true}
-        />
+        <>
+          <Tasks
+            tasks={tasks}
+            filter={'할 일'}
+            onUpdate={handleUpdate}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            change={true}
+            color={'red'}
+          />
+          <AddButton onAdd={handleAdd} />
+        </>
       );
       break;
     case '진행 중':
@@ -86,10 +90,4 @@ export default function Task({ filter }) {
     </div>
   );
 }
-
-function readTasksFromLocalstorage() {
-  const tasks = localStorage.getItem('tasks');
-  return tasks ? JSON.parse(tasks) : []
-}
-
 
