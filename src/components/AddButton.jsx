@@ -19,7 +19,7 @@ export default function AddButton({ onAdd }) {
     setText('');
   }
 
-
+  
   return (
     <div>
       <form onSubmit={handleSubmit} className='flex items-center'>
@@ -30,7 +30,7 @@ export default function AddButton({ onAdd }) {
           onChange={handleChange}
           className='flex-grow border border-gray-200 p-1 pl-2 outline-none rounded-bl-md'
         />
-        <button className='bg-red-100 p-1 rounded-br-md'>추가</button>
+        <button className='bg-red-100 p-1 rounded-br-md hover:bg-red-200'>추가</button>
       </form>
     </div>
   );
