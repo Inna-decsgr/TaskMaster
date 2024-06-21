@@ -1,30 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import AddTask from './AddTask';
 import Tasks from './Tasks';
+import { useRecoilState } from 'recoil';
+import { tasksState } from '../atoms';
 
 export default function Task({ filter }) {
-  const [tasks, setTasks] = useState(() => readTasksFromLocalstorage());
+  const [tasks, setTasks] = useRecoilState(tasksState);
+  
   const handleAdd = (task) => {
-    setTasks([
-      ...tasks,
-      task
-    ])
+    const updatedTasks = [...tasks, task];
+    setTasks(updatedTasks);
+    updateLocalStorage(updatedTasks)
   }
-
   const handleUpdate = (updated) => {
-    setTasks(tasks.map((t) => t.id === updated.id ? updated : t))
+    const updatedTasks = tasks.map((t) => (t.id === updated.id ? updated : t));
+    setTasks(updatedTasks);
+    updateLocalStorage(updatedTasks)
   };
   const handleDelete = (deleted) => {
-    setTasks(tasks.filter((t) => t.id !== deleted))
+    const updatedTasks = tasks.filter((t) => t.id !== deleted);
+    setTasks(updatedTasks);
+    updateLocalStorage(updatedTasks);
   };
   const handleEdit = (edited) => {
     if (edited) {
-      setTasks(tasks.map((t) => t.id === edited.id ? edited : t));
+      const updatedTasks = tasks.map((t) => t.id === edited.id ? edited : t);
+      setTasks(updatedTasks);
+      updateLocalStorage(updatedTasks);
     }
   }
 
+  const updateLocalStorage = (updateTasks) => {
+    localStorage.setItem('tasks', JSON.stringify(updateTasks))
+  }
+
   useEffect(() => {
-    localStorage.setItem('tasks', JSON.stringify(tasks))
+    updateLocalStorage(tasks)
   }, [tasks]);
 
 
