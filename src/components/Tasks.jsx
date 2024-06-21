@@ -1,9 +1,18 @@
 import React from 'react';
 import Todo from './Todo';
 
-export default function Tasks({tasks, filter, onUpdate, change, color, date}) {
+export default function Tasks({tasks, filter, onUpdate, onDelete, onEdit, change, color, date}) {
   function filterTasksByStatus(tasks, statusFilter) {
-    return tasks.filter(task => task.status === statusFilter);
+    switch (statusFilter) {
+    case '할 일':
+      return tasks;
+    case '진행 중':
+      return tasks.filter(task => task.status === '진행 중');
+    case '완료':
+      return tasks.filter(task => task.status === '완료');
+    default:
+      return tasks;
+  }
   }
 
   const filteredTasks = filterTasksByStatus(tasks, filter);
@@ -12,11 +21,33 @@ export default function Tasks({tasks, filter, onUpdate, change, color, date}) {
     onUpdate(updatedTask)
   }
 
+  let colorClass;
+  let circleColorClass;
+  switch (color) {
+    case 'red':
+      colorClass = 'bg-red-100';
+      circleColorClass = 'bg-red-400';
+      break;
+    case 'yellow':
+      colorClass = 'bg-yellow-100';
+      circleColorClass = 'bg-yellow-400';
+      break;
+    case 'green':
+      colorClass = 'bg-green-100';
+      circleColorClass = 'bg-green-400';
+      break;
+    default:
+      colorClass = 'bg-gray-100'; 
+      circleColorClass = 'bg-gray-400'; 
+      break;
+  }
+
+
   return (
     <section>
       <div className='flex'>
-        <div className={`flex justify-center items-center ${color === 'yellow' ? 'bg-yellow-100' : 'bg-green-100'} w-24 rounded-lg mb-4`}>
-        <div className={`relative w-2 h-2 before:block before:w-2 before:h-2 before:absolute before:top-0 before:left-0 rounded-full ${color === 'yellow' ? 'bg-yellow-400' : 'bg-green-400'}`} />
+        <div className={`flex justify-center items-center ${colorClass} w-24 rounded-lg mb-4`}>
+        <div className={`relative w-2 h-2 before:block before:w-2 before:h-2 before:absolute before:top-0 before:left-0 rounded-full ${circleColorClass}`} />
           <h2 className='text-sm md:text-base ml-3 font-bold'>{filter}</h2>
         </div>
         <span className='text-sm md:text-base ml-4 text-gray-400 font-bold dark:text-text-gray'>{filteredTasks.length}</span>
@@ -32,6 +63,8 @@ export default function Tasks({tasks, filter, onUpdate, change, color, date}) {
                 filter={filter}
                 task={item.text}
                 onUpdate={handleStatusUpdate}
+                onDelete={onDelete}
+                onEdit={onEdit}
                 status={item.status}
                 change={change}
                 date={date}

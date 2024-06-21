@@ -57,6 +57,7 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
                 type="text"
                 value={newText}
                 onChange={updateText}
+                className='dark:text-black'
               />
             </form>
             {change && (
