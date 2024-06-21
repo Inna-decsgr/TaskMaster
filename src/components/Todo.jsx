@@ -48,7 +48,7 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
 
 
   return (
-    <div className={`flex items-center my-3 justify-between`} ref={list}>
+    <div className={`flex items-center my-3 justify-between dark:text-text`} ref={list}>
       {
         edit ? (
           <>
@@ -61,10 +61,10 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
             </form>
             {change && (
             <span className='flex gap-2'>
-                <button className='hover:bg-white p-1' type='button' onClick={handleStorage}>
+                <button className='p-1 dark:text-text-gray' type='button' onClick={handleStorage}>
                   <FaCheckCircle />
                 </button>
-                <button className='hover:bg-white p-1' type='button' onClick={() => setEdit(!edit)}>
+                <button className='p-1 dark:text-text-gray' type='button' onClick={() => setEdit(!edit)}>
                   <AiOutlineRollback />
                 </button>
             </span>
@@ -83,8 +83,8 @@ export default function Todo({ id, task, status, onUpdate, onDelete, onEdit, cha
           </div>
           {change && (
             <span className='flex gap-2'>
-              <button className='hover:bg-white p-1' onClick={handleEdit}><FaPenFancy /></button>
-              <button className='hover:bg-white p-1' onClick={() => onDelete(id)}><BsTrash /></button>
+              <button className='p-1' onClick={handleEdit}><FaPenFancy /></button>
+              <button className='p-1' onClick={() => onDelete(id)}><BsTrash /></button>
             </span>
           )}
           {date && (

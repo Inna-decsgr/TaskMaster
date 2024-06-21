@@ -16,10 +16,10 @@ export default function AddTask({ tasks, onUpdate, onAdd, onDelete, onEdit, chan
           <div className='relative w-2 h-2 before:block before:w-2 before:h-2 before:absolute before:top-0 before:left-0 rounded-full bg-red-400'></div>
           <h2 className='text-sm md:text-base ml-3 font-bold'>할 일</h2>
         </div>
-        <span className='text-sm md:text-base ml-4 text-gray-400 font-bold'>{tasks.length}</span>
+        <span className='text-sm md:text-base ml-4 text-gray-400 font-bold dark:text-text-gray'>{tasks.length}</span>
       </div>
-      <div className='w-80 h-80 border rounded-tl-md rounded-tr-md p-2 bg-gray-50 overflow-y-auto'>
-        <h2 className='text-2xl font-bold'>Tasks</h2>
+      <div className='w-80 h-80 border rounded-tl-md rounded-tr-md p-2 bg-gray-100 overflow-y-auto dark:bg-bg-task-dark dark:border-none'>
+        <h2 className='text-2xl font-bold dark:text-text'>Tasks</h2>
         {
           tasks.map((item) =>
             <Todo

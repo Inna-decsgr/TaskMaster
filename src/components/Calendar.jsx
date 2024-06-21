@@ -43,7 +43,7 @@ export const Calendar = ({ id, selectedDate, setSelectedDate }) => {
         selected={fixedDate || selectedDate}
         dayClassName={(d) => (d.getDate() === (selectedDate ? selectedDate.getDate() : 0) ? 'bg-orange-500 rounded-full text-white' : 'hover:bg-gray-200')}
         onChange={(date) => handleCheck(date)}
-        className="flex items-center w-28 h-8 border border-gray-300 rounded-md px-4"
+        className="flex items-center w-28 h-8 border border-gray-300 rounded-md px-4 dark:text-black"
         renderCustomHeader={({ date, changeYear, decreaseMonth, increaseMonth, prevMonthButtonDisabled, nextMonthButtonDisabled }) => (
           <div>
             <div>
